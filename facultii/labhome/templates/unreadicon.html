@@ -1,0 +1,26 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static "labhome/style.css" %}">
+</head>
+<body class="mailbod">
+<div class="relative-wrap">
+    <div class="mail">
+        <div class="mail-top"></div>
+        <div class="mail-bottom"></div>
+    </div>
+    <div class="notification" style="overflow:initial">
+            {% if sequence_isgoing %}
+                <h1 id="unreadcount">{{number}}</h1>
+            {% else %}
+                <h1 id="unreadcount">1000</h1>
+            {% endif %}
+    </div>
+</div>
+
+<form method="post" action="/unreadcount/">
+    {% csrf_token %}
+    <input name="number" value={{number}}>
+    <button type="submit" id="start">Start</button>
+</form>
+
+</body>
